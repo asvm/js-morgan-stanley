@@ -1,0 +1,40 @@
+ *{
+   padding:0;
+   margin:0;
+ }
+    table {
+      border: 6px solid deepskyblue;
+      width: 500px;
+      height: 400px;
+    }
+    table,
+    th,
+    td {
+      border-collapse: collapse;
+    }
+    th {
+      border: 1px solid grey;
+    }
+    th,
+    td {
+      padding: 5px;
+      text-align: center;
+    }
+
+    th:nth-child(1) {
+      background-color: aliceblue;
+    }
+    th:nth-child(2) {
+      background-color: whitesmoke;
+    }
+    hr {
+      border-color: aliceblue;
+      border-width: 2px;
+    }
+    .red {
+      color: red;
+    }
+    .green {
+      color: green;
+    }
+  
