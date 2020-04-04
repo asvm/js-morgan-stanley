@@ -67,43 +67,11 @@ const ArrayExtraction = (getAcctData, ...restArgs) => {
     
 ArrayExtraction(acctData, "Alice", "balance", "desc");
 
-/****pass args accordingly the first is the array that we're going to
-    play, second is the name(alice/bob) to display their account numbers
-    and balance blocks, third is the second arg provided with
-    two options either "accountnum" or "balance"****/
 
-/**********************************NOTE****************************/
-/**************************************************************/
-/**************************************************************/
 
-/* I didn't understand the option paramater "sortDirection"
-which accepts asc or dec order, because there must be an array to play this
-optional parameter. Since I'm outputing every arg value in array format its possible to simply 
-use reverse() built-in array method. But for sortBy (accepts "acctNum" or "balance") 
-which yeilds output from a function and it's not suitable to
-perform array operation on elements of type function,so
-assuming it's not required as per the logic,
-I'm allowing every array format output in ascending order by default*/
 
-/**tried below code snippet for <<<sortBy (accepts "acctNum" or "balance")>>> 
- but didn't allowed to take a chance due to following constraint**/
 
-/*last argument if passed as "desc" by default(ascending order set to all output arrays in console tray) for sorting*/
 
-// let third = normalArray[2];
-//-->utility func--->
-// const sortWholeOutput = (...toBeSortArgs) =>
-//   toBeSortArgs.map((el, index) => el.reverse());
-
-// if (third === "desc") {
-//   sortWholeOutput(mapAcctNum, filterOutputByName);
-// }
-
-/***  type of toBeSortArgs==="function" which is "second" 
-    identifier for variable from ...restArgs --->  let second = normalArray[1] ***/
-
-/***  type of toBeSortArgs==="function" which is "second" 
-    identifier for variable from ...restArgs --->  let second = normalArray[1] dont allow us to use built in array method on function call as an element inside array***/
 
 
 
