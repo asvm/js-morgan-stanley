@@ -1,4 +1,5 @@
-let getSortPiece = document.getElementById("asc-desc-order");
+
+    let getSortPiece = document.getElementById("asc-desc-order");
 
 let tableEle = document.getElementById("tabledata");
 rows = tableEle.rows;
@@ -53,7 +54,7 @@ function sortTable(n) {
     }
   }
 }
-
+// document.getElementById("loadmore").addEventListener("click",loadmore);
 function loadmore() {
   const randomNumGen = Math.random().toFixed(3);
   const random_gen = (Math.random() * Math.floor(4)).toFixed() + 500;
@@ -80,3 +81,5 @@ function loadmore() {
     random_gen +
     "</p>";
 }
+
+
