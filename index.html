@@ -1,102 +1,68 @@
-
 <!DOCTYPE html>
-<head>
-  <title>JS </title>
-  <style>
-     *{
-   padding:0;
-   margin:0;
- }
-    table {
-      border: 6px solid deepskyblue;
-      width: 500px;
-      height: 400px;
-    }
-    table,
-    th,
-    td {
-      border-collapse: collapse;
-    }
-    th {
-      border: 1px solid grey;
-    }
-    th,
-    td {
-      padding: 5px;
-      text-align: center;
-    }
 
-    th:nth-child(1) {
-      background-color: aliceblue;
-    }
-    th:nth-child(2) {
-      background-color: whitesmoke;
-    }
-    hr {
-      border-color: aliceblue;
-      border-width: 2px;
-    }
-    .red {
-      color: red;
-    }
-    .green {
-      color: green;
-    }
-  
-    </style>
- 
-  <script src="index.js"></script>
+<head>
+	<title>JS</title>
+	<link rel="stylesheet" text="text/css" href="style.css" />
+	<script src="arrayExtract.js"></script>
+	<script src="tableSort.js"></script>
 </head>
 
-<h1> JS exercise</h1>
-  <table>
-    <tr>
-      <th>
-        Account
-      </th>
-      <th>
-        Available Cash
-      </th>
-    </tr>
-    <tr>
-      <td>
-        IRA-5000
-      </td>
-      <td>
-        <p>$573</p>
-        <p class="red">--0.008% /$8,900</p>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2"><hr /></td>
-    </tr>
-    <tr>
-      <td>
-        IRA-10000
-      </td>
-      <td>
-        <p>$573</p>
-        <p class="green">--0.008% /$8,900</p>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2"><hr /></td>
-    </tr>
-    <tr>
-      <td>
-        IRA-20000
-      </td>
-      <td>
-        <p>$573</p>
-        <p class="green">--0.008% /$8,900</p>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2"><hr /></td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        Load More
-      </td>
-    </tr>
-  </table>
+<body>
+  <!-- /******** sorting table based on Available cash *******/ -->
+
+  <!-- ALGORITHM PATTERN AND STRIKING TRACK -->
+  <!-- the table sorts out asc/desc order on clicking the second header
+  with Available cash. On initial render table falls with asc order
+  on the UI, clicking on asc will trigger up des mode and values are 
+  updated in des order. However the functionality slightly has a hidden
+  check which is upon on addition of rows via loadmore button. On every click via loadmore rows with random values are generated and at this point of time
+  whether we're in asc/desc mode , click on immediate asc/desc will not
+  trigger the sorting order, it first has it's check on the additional rows setting up to match the current order and then continues to shift on algo written... lets say you've 500,600,700 on initial render, then clicking on asc mode will trigger desc mode with 700,600,500... Assume a click happened
+  on loadmore button and a random values are generated as 800,1500,2000,1000.
+  now table will have order 700,600,500,800,1500,2000,1000. So clicking on desc mode will not immediately trigger asc mode and set sorting in asc order, it will first chnages the current stack of values to 2000,1500,1000,800,700,600,500 and then shifts to algo written mode, a slight confuse but with good takeaway -->
+	<table id="tabledata">
+		<tr>
+			<th>
+				Account
+			</th>
+			<th onclick="sortTable(1)">
+				<span class="asc-desc-order up" id="asc-desc-order"></span>Available
+				Cash<p>Today's change</p>
+			</th>
+		</tr>
+		<tr>
+			<td>
+				IRA-5000
+			</td>
+			<td>
+				<p>$573.633</p>
+				<p class="red">-0.008% /$8,900</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				IRA-10000
+			</td>
+			<td>
+				<p>$673.33</p>
+				<p class="green">-0.008% /$8,900</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				IRA-20000
+			</td>
+			<td>
+				<p>$773.786</p>
+				<p class="green">-0.001% /$8,900</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td colspan="2" id="load-more" class="load-more">Load More</td>
+			
+		</tr>
+	</table>
+</body>
