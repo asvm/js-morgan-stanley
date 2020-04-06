@@ -32,7 +32,7 @@ const ArrayExtraction = (getAcctData, ...restArgs) => {
   let normalArray = restArgs;
   let first = normalArray[0]; // OK, gives the first argument
   let second = normalArray[1];
-
+let third = normalArray[2];
   const mapAcctNum = getAcctData.map(el => el.acctNum);
   /*all users account numbers by name except Alice,If Alice is the input
       then his balance for respective accounts will be shown in the Array*/
@@ -41,39 +41,60 @@ const ArrayExtraction = (getAcctData, ...restArgs) => {
       .filter(el => el.user === first)
       .map(specificUserAcctNum => specificUserAcctNum.acctNum)
       .sort();
-  const filterOutputByName =
-    first !== "Alice"
-      ? getUsers(first)
-      : getAcctData.map(el => balance[el.acctNum]).sort();
-  /*sort-by depends on input "acctNum" or "balance" passed as an arg when invoking function*/
-  second === "acctNum"
-    ? (second = () =>
-        getAcctData.map(spreadAcctNum => spreadAcctNum.acctNum).sort())
-    : (second = () => Object.values(balance).sort());
+  //console.log("xyz",getUsers("Alice").sort((a, b) => a - b))
+  const filterOutputByName = first==="Alice" ? 
+  getUsers(first).map(el=>balance[el])
+  : getUsers(first);
 
-  /*output tray in console*/
+
+
+  /*** using mergesort for asc/desc option***/
+  let arr = filterOutputByName;
+  const sorting = (arr, third) => {
+    if (arr.length < 2) {
+      return arr;
+    }
+    let half = arr.length / 2;
+
+    let lefthalf = arr.splice(0, half);
+
+    return check(sorting(lefthalf), sorting(arr));
+  };
+
+  const check = (lefthalf, arr) => {
+    let temp = [];
+
+    while (lefthalf.length && arr.length) {
+      if (second === "asc") {
+        if (lefthalf[0] > arr[0]) {
+          temp.push(arr.shift());
+        } else {
+          temp.push(lefthalf.shift());
+        }
+      }
+      if (second === "desc") {
+        if (lefthalf[0] < arr[0]) {
+          temp.push(arr.shift());
+        } else {
+          temp.push(lefthalf.shift());
+        }
+      }
+    }
+
+    return [...temp, ...lefthalf, ...arr];
+  };
+
   console.log("accountnumbers-stack", mapAcctNum);
   console.log(
     "getUserAccountNumber , if it's Alice, you can see his balance in ascending order else Bob account number will be shown",
     filterOutputByName
   );
-  console.log("second-acctNum/Balance", second());
+  console.log("second-acctNum/Balance in descending/acsending order", sorting(arr, second));
 };
 
-/*function invocation with args pass, ...restArgs get the values
-    in array format, where the first arg falls under the actual array
-    we want to perform the functionality on and remaining will be rest arguments
-    mapped to rest parameters in the function paranthesis in the definition spot*/
-    
-ArrayExtraction(acctData, "Alice", "balance", "desc");
+ArrayExtraction(acctData);
+//ArrayExtraction(acctData, "Bob", "acctNum","asc");
+//ArrayExtraction(acctData, "Bob", "desc");
 
-
-
-
-
-
-
-
-
-
-    
+//ArrayExtraction(acctData, "Alice", "asc");
+ArrayExtraction(acctData, "Alice", "acctNum","desc");
