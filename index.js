@@ -1,3 +1,4 @@
+
 /***given inputs***/
 const acctData = [
   {
@@ -32,7 +33,7 @@ const ArrayExtraction = (getAcctData, ...restArgs) => {
   let normalArray = restArgs;
   let first = normalArray[0]; // OK, gives the first argument
   let second = normalArray[1];
-let third = normalArray[2];
+//let third = normalArray[2];
   const mapAcctNum = getAcctData.map(el => el.acctNum);
   /*all users account numbers by name except Alice,If Alice is the input
       then his balance for respective accounts will be shown in the Array*/
@@ -50,7 +51,7 @@ let third = normalArray[2];
 
   /*** using mergesort for asc/desc option***/
   let arr = filterOutputByName;
-  const sorting = (arr, third) => {
+  const sorting = (arr, second) => {
     if (arr.length < 2) {
       return arr;
     }
@@ -93,8 +94,7 @@ let third = normalArray[2];
 };
 
 ArrayExtraction(acctData);
-//ArrayExtraction(acctData, "Bob", "acctNum","asc");
+//ArrayExtraction(acctData, "Bob","asc");
 //ArrayExtraction(acctData, "Bob", "desc");
-
 //ArrayExtraction(acctData, "Alice", "asc");
-ArrayExtraction(acctData, "Alice", "acctNum","desc");
+ArrayExtraction(acctData, "Alice","asc");
